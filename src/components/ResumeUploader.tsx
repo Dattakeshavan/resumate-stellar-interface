@@ -68,8 +68,8 @@ const ResumeUploader: React.FC = () => {
         className={cn(
           "border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300",
           "backdrop-blur-md bg-white bg-opacity-5 hover:bg-opacity-10",
-          isDragging ? "border-resumate-highlight animate-pulse-glow" : "border-white border-opacity-30",
-          "animate-pulse-glow"
+          isDragging ? "border-resumate-highlight" : "border-white border-opacity-30",
+          "hover:animate-pulse-glow" // Changed from constant pulse-glow to hover-only
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -116,3 +116,4 @@ const ResumeUploader: React.FC = () => {
 };
 
 export default ResumeUploader;
+
