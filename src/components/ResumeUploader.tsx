@@ -1,12 +1,15 @@
 
 import React, { useState, useRef } from 'react';
-import { Upload, FileText, Loader } from 'lucide-react';
+import { Upload, FileText, Loader, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const ResumeUploader: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [email, setEmail] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -36,7 +39,6 @@ const ResumeUploader: React.FC = () => {
   const handleFile = (selectedFile: File) => {
     if (!selectedFile) return;
     
-    // Check if file is PDF or DOC/DOCX
     const fileType = selectedFile.type;
     const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     
@@ -51,15 +53,17 @@ const ResumeUploader: React.FC = () => {
 
   const simulateUpload = () => {
     setIsUploading(true);
-    // Simulate upload process
     setTimeout(() => {
       setIsUploading(false);
-      console.log("Resume uploaded and ready for analysis");
     }, 2000);
   };
 
   const handleClick = () => {
     fileInputRef.current?.click();
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   return (
@@ -69,7 +73,7 @@ const ResumeUploader: React.FC = () => {
           "border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300",
           "backdrop-blur-md bg-white bg-opacity-5 hover:bg-opacity-10",
           isDragging ? "border-resumate-highlight" : "border-white border-opacity-30",
-          "hover:animate-pulse-glow" // Changed from constant pulse-glow to hover-only
+          "hover:animate-pulse-glow"
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -95,8 +99,26 @@ const ResumeUploader: React.FC = () => {
               <FileText className="h-12 w-12 text-resumate-highlight" />
               <h3 className="text-xl font-medium text-white">{file.name}</h3>
               <p className="text-gray-300">File ready for analysis</p>
+              
+              <div className="w-full max-w-md mt-6 space-y-2">
+                <Label htmlFor="email" className="text-white">Enter your email to receive the analysis</Label>
+                <div className="flex items-center space-x-2">
+                  <Mail className="text-resumate-highlight" />
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="your.email@example.com"
+                    className="bg-white bg-opacity-10 border-white border-opacity-20 text-white placeholder:text-gray-400"
+                    required
+                  />
+                </div>
+              </div>
+              
               <button 
-                className="px-6 py-2 bg-resumate-highlight rounded-full text-white font-medium hover:bg-opacity-90 transition-all"
+                className="px-6 py-2 bg-resumate-highlight rounded-full text-white font-medium hover:bg-opacity-90 transition-all mt-4"
+                disabled={!email}
               >
                 Analyze Now
               </button>
