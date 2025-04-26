@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,11 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				'resumate': {
+					'blue-dark': '#081c3c',
+					'blue': '#0a2342',
+					'highlight': '#0ea5e9',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -66,29 +72,61 @@ export default {
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				xl: '20px',
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 15px 2px rgba(14, 165, 233, 0.4)',
+						transform: 'scale(1)'
 					},
-					to: {
-						height: '0'
+					'50%': { 
+						boxShadow: '0 0 20px 5px rgba(14, 165, 233, 0.6)',
+						transform: 'scale(1.01)'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'wave': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
+				'float': 'float 4s ease-in-out infinite',
+				'wave': 'wave 10s linear infinite',
+				'fade-in': 'fade-in 0.6s ease-out forwards'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'blue-gradient': 'linear-gradient(180deg, #081c3c 0%, rgba(255, 255, 255, 1) 100%)',
+			},
+			boxShadow: {
+				'glow': '0 0 15px rgba(14, 165, 233, 0.5)',
+				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.2)',
+			},
+			fontFamily: {
+				'poppins': ['Poppins', 'sans-serif'],
+				'orbitron': ['Orbitron', 'sans-serif'],
 			}
 		}
 	},
