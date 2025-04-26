@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Upload, FileText, Loader, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -94,27 +93,34 @@ const ResumeUploader: React.FC = () => {
               <Loader className="h-12 w-12 text-resumate-highlight animate-spin" />
               <h3 className="text-xl font-medium text-white">Processing your resume...</h3>
             </>
-          ) : file ? (
+          ) : !file ? (
             <>
-              <FileText className="h-12 w-12 text-resumate-highlight" />
-              <h3 className="text-xl font-medium text-white">{file.name}</h3>
-              <p className="text-gray-300">File ready for analysis</p>
-              
-              <div className="w-full max-w-md mt-6 space-y-2">
-                <Label htmlFor="email" className="text-white">Enter your email to receive the analysis</Label>
+              <div className="w-full max-w-md mb-6 space-y-2">
+                <Label htmlFor="email" className="text-white">Enter your email before uploading</Label>
                 <div className="flex items-center space-x-2">
-                  <Mail className="text-resumate-highlight" />
+                  <Mail className="text-blue-500" />
                   <Input
                     id="email"
                     type="email"
                     value={email}
                     onChange={handleEmailChange}
                     placeholder="your.email@example.com"
-                    className="bg-white bg-opacity-10 border-white border-opacity-20 text-white placeholder:text-gray-400"
+                    className="bg-blue-500 bg-opacity-20 border-blue-500 border-opacity-50 text-white placeholder:text-blue-200 focus:border-blue-300"
                     required
                   />
                 </div>
               </div>
+              
+              <Upload className="h-12 w-12 text-resumate-highlight" />
+              <h3 className="text-xl font-medium text-white">Upload your resume</h3>
+              <p className="text-gray-300">Drag and drop or click to browse</p>
+              <p className="text-xs text-gray-400">Supports PDF, DOC, DOCX files</p>
+            </>
+          ) : (
+            <>
+              <FileText className="h-12 w-12 text-resumate-highlight" />
+              <h3 className="text-xl font-medium text-white">{file.name}</h3>
+              <p className="text-gray-300">File ready for analysis</p>
               
               <button 
                 className="px-6 py-2 bg-resumate-highlight rounded-full text-white font-medium hover:bg-opacity-90 transition-all mt-4"
@@ -122,13 +128,6 @@ const ResumeUploader: React.FC = () => {
               >
                 Analyze Now
               </button>
-            </>
-          ) : (
-            <>
-              <Upload className="h-12 w-12 text-resumate-highlight" />
-              <h3 className="text-xl font-medium text-white">Upload your resume</h3>
-              <p className="text-gray-300">Drag and drop or click to browse</p>
-              <p className="text-xs text-gray-400">Supports PDF, DOC, DOCX files</p>
             </>
           )}
         </div>
@@ -138,4 +137,3 @@ const ResumeUploader: React.FC = () => {
 };
 
 export default ResumeUploader;
-
