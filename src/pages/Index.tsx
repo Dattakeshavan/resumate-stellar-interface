@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Star, MessageSquare } from 'lucide-react';
@@ -23,7 +22,7 @@ const Index = () => {
             Unlock career opportunities with intelligent resume analysis, feedback, and job matching powered by advanced AI.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <button 
               onClick={() => navigate('/applicant')}
               className="px-8 py-3 rounded-full bg-resumate-highlight text-white font-medium hover:bg-opacity-90 transition-all"
@@ -37,34 +36,34 @@ const Index = () => {
               Post a Job
             </button>
           </div>
-        </div>
 
-        <WaveDivider />
-        
-        {/* Features Section */}
-        <div className="py-12">
-          <h2 className="text-3xl font-bold text-center mb-12 font-orbitron animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
-            Why Choose ResuMate
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FeatureCard 
-              title="Smart Analysis" 
-              description="Our AI scans resumes and job descriptions to find the perfect match."
-              icon={Search}
-              delay={400}
-            />
-            <FeatureCard 
-              title="Match Score" 
-              description="Get accurate matching scores between candidates and job requirements."
-              icon={Star}
-              delay={600}
-            />
-            <FeatureCard 
-              title="Instant Feedback" 
-              description="Receive detailed insights and suggestions for both parties."
-              icon={MessageSquare}
-              delay={800}
-            />
+          <WaveDivider />
+          
+          {/* Features Section */}
+          <div className="py-12">
+            <h2 className="text-3xl font-bold text-center mb-12 font-orbitron animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
+              Why Choose ResuMate
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <FeatureCard 
+                title="Smart Analysis" 
+                description="Our AI scans resumes and job descriptions to find the perfect match."
+                icon={Search}
+                delay={400}
+              />
+              <FeatureCard 
+                title="Match Score" 
+                description="Get accurate matching scores between candidates and job requirements."
+                icon={Star}
+                delay={600}
+              />
+              <FeatureCard 
+                title="Instant Feedback" 
+                description="Receive detailed insights and suggestions for both parties."
+                icon={MessageSquare}
+                delay={800}
+              />
+            </div>
           </div>
         </div>
       </main>
